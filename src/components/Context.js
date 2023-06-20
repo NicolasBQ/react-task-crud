@@ -14,11 +14,19 @@ const Provider = ({ children }) => {
         setTasks(newArr);
     }
 
+    const deleteTask = (id) => {
+        const newArr = [...tasks];
+        newArr.splice(id, 1);
+        newArr.forEach((task, i) => task.id = i);
+        setTasks(newArr);
+    }
+
     return (
         <Context.Provider
             value={{
                 newTask,
-                tasks
+                tasks,
+                deleteTask
             }}
         >
             {children}
