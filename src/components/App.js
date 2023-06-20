@@ -1,8 +1,11 @@
+import { Provider } from "./Context";
+import { AppUI } from "./AppUI";
+
 const App = () => {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">React Crud</h1>
-    </>
+    <Provider>
+      <AppUI />
+    </Provider>
   )
 }
 
