@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
         e.preventDefault();
         const newArr = [...tasks];
         const taskName = e.target[0].value;
-        newArr.push({id: tasks.length, name: taskName});
+        newArr.push({id: tasks.length, name: taskName, editable: false});
         setTasks(newArr);
     }
 
@@ -21,12 +21,38 @@ const Provider = ({ children }) => {
         setTasks(newArr);
     }
 
+    const changeEditability = (id) => {
+        let newArr = [...tasks].map(task => {
+            if(task.id === id) {
+                task.editable = !task.editable;
+                return task;
+            }
+
+            return task
+        });
+        setTasks(newArr);
+    }
+
+    const newTaskVal = (e, id) => {
+        let newArr = [...tasks].map(task => {
+            if(task.id === id) {
+                task.name = e.target.value;
+                return task;
+            }
+
+            return task;
+        })
+        setTasks(newArr);
+    }
+
     return (
         <Context.Provider
             value={{
                 newTask,
                 tasks,
-                deleteTask
+                deleteTask,
+                changeEditability,
+                newTaskVal
             }}
         >
             {children}

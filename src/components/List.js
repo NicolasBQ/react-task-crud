@@ -7,11 +7,11 @@ const List = () => {
     const { 
         tasks
     } = React.useContext(Context);
+
+    const items = tasks.map(task => <Item task={task} key={task.id}/>)
     return (
         <ul>
-            {tasks.map(task =>
-                <Item task={task} key={task.id}/>
-            )}
+            {items}
         </ul>
     )
 }
